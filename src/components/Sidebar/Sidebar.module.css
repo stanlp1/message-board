@@ -1,0 +1,12 @@
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    font-size: 20px;
+    height: 100vh;
+    float:left;
+}
+
+.sidebar-item {
+    margin: .5em;
+}

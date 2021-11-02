@@ -1,0 +1,15 @@
+.header-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    background-color:antiquewhite;
+}
+
+.header-title {
+    margin: .5em;
+}
+
+.header-login-container {
+    margin: .5em;
+    margin-left:auto;   
+}
