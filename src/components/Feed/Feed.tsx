@@ -1,29 +1,42 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getAllUserPosts } from "../../services/postServices";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { setPosts } from "../../reducers/feedSlice";
+import PostForm from "./PostForm";
 
 const Feed = (): JSX.Element => {
-  const [posts, setPosts] = useState<{ content: String }[]>([]);
+  const feed = useAppSelector((state) => state.feed);
+  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
 
   useEffect(() => {
     if (user !== "") {
-      getAllUserPosts().then((posts) => setPosts(posts));
+      getAllUserPosts().then((posts) => {
+        dispatch(setPosts({ posts }));
+        console.log(posts);
+      });
     }
-  }, [user]);
+  }, [user, dispatch]);
 
-  if (posts.length !== 0) {
-    console.log(posts);
+  if (feed.length !== 0) {
     return (
       <div>
-        {posts.map((post) => (
-          <div>{post.content}</div>
-        ))}
+        <PostForm></PostForm>
+        <div>
+          {feed.map((post, index) => (
+            <div key={index}>{post.content}</div>
+          ))}
+        </div>
       </div>
     );
   }
-  return <div>No Posts</div>;
+  return (
+    <div>
+      No Posts
+      <PostForm></PostForm>
+    </div>
+  );
 };
 
 export default Feed;

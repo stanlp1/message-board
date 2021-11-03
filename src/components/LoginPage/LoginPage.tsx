@@ -1,12 +1,14 @@
 import { login } from "../../reducers/authSlice";
 import { useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
-import { userLogin, userRegister } from "../../services/userServices";
+import { userLogin, userRegister } from "../../services/accountServices";
+import { useHistory } from "react-router";
 import Styles from "./LoginPage.module.css";
 
 const LoginPage = (): JSX.Element => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  let history = useHistory();
   const dispatch = useAppDispatch();
 
   const handleLogin = async (e: any) => {
@@ -14,6 +16,7 @@ const LoginPage = (): JSX.Element => {
     const loginResult = await userLogin(username, password);
     if (loginResult.status === 202) {
       dispatch(login({ user: username }));
+      history.push("/feed");
     }
   };
 

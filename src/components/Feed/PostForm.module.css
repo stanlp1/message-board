@@ -1,0 +1,15 @@
+.post-text-area {
+    resize: none;
+}
+
+.post-form-container {
+    display:flex;
+    flex-direction: column;
+    max-width: 20%;
+    margin: 1em;
+}
+
+.post-form-button {
+    margin-top: 1em;
+    margin-left:auto;
+}

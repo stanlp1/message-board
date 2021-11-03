@@ -1,7 +1,7 @@
 import Styles from "./Header.module.css";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { logout } from "../../reducers/authSlice";
-import { userLogout } from "../../services/userServices";
+import { userLogout } from "../../services/accountServices";
 
 const UserControl = (): JSX.Element => {
   const dispatch = useAppDispatch();

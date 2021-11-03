@@ -1,10 +1,10 @@
-const baseURL = "http://localhost:4000";
+const baseURL = "http://localhost:4000/posts";
 let headersList = {
   "Content-Type": "application/json",
 };
 
 const getAllUserPosts = async () => {
-  const url = baseURL + "/posts/all";
+  const url = baseURL + "/getUserPosts";
   let res = await fetch(url, {
     method: "GET",
     headers: headersList,
@@ -15,4 +15,17 @@ const getAllUserPosts = async () => {
   return jsonRes;
 };
 
-export { getAllUserPosts };
+const makeNewPost = async (content) => {
+  const url = baseURL + "/new";
+  let body = {
+    content,
+  };
+  let res = await fetch(url, {
+    method: "POST",
+    headers: headersList,
+    credentials: "include",
+    body: JSON.stringify(body),
+  });
+  return res;
+};
+export { getAllUserPosts, makeNewPost };
