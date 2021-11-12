@@ -9,7 +9,6 @@ const getSuggestedUsers = async () => {
     credentials: "include",
   });
   let jsonRes = await res.json();
-  // console.log(jsonRes);
   return jsonRes;
 };
 

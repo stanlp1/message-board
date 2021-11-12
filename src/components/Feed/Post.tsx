@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getComments } from "../../services/postServices";
 import { useAppDispatch } from "../../app/hooks";
 import Styles from "./Post.module.css";
@@ -46,13 +46,15 @@ const Post = ({
   const [comments, setComments] = useState<
     { username: string; content: string }[]
   >([]);
+
   const [comVis, setComVis] = useState(false);
   const dispatch = useAppDispatch();
   const createdDate = new Date(created_at);
   const currentDate = new Date();
-  const timeDiff = Math.round(
-    Math.abs(createdDate.getTime() - currentDate.getTime()) / 36e5
-  );
+  const timeDiff =
+    Math.round(Math.abs(createdDate.getTime() - currentDate.getTime()) / 36e5) -
+    8;
+  console.log(createdDate, currentDate, timeDiff);
   const handleLike = (e: any) => {
     e.stopPropagation();
     dispatch(updateLikePost(post_id));

@@ -24,7 +24,11 @@ const LoginPage = (): JSX.Element => {
     e.preventDefault();
     const registerResult = await userRegister(username, password);
     if (registerResult.status === 202) {
-      alert("Please log in");
+      const loginResult = await userLogin(username, password);
+      if (loginResult.status === 202) {
+        dispatch(login({ user: username }));
+        history.push("/feed");
+      }
     }
   };
 
