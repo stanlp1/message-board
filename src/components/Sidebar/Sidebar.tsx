@@ -8,7 +8,7 @@ import {
 } from "../../reducers/feedSlice";
 import { userLogout } from "../../services/accountServices";
 import { logout } from "../../reducers/authSlice";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 
 const Sidebar = (): JSX.Element => {
   const history = useHistory();
@@ -31,7 +31,7 @@ const Sidebar = (): JSX.Element => {
   return (
     <div className={Styles["sidebar-container"]}>
       <div className={Styles["sidebar-logo"]}>
-        <TwitterIcon style={{ fontSize: "40px" }} />
+        <TextSnippetIcon style={{ fontSize: "40px" }} />
       </div>
 
       {/* <div
