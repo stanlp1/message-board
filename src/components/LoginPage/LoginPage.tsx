@@ -1,13 +1,15 @@
 import { login } from "../../reducers/authSlice";
 import { useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userLogin, userRegister } from "../../services/accountServices";
 import { useHistory } from "react-router";
+import { Redirect } from "react-router";
 import Styles from "./LoginPage.module.css";
 
 const LoginPage = (): JSX.Element => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  let loggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   let history = useHistory();
   const dispatch = useAppDispatch();
 
@@ -31,6 +33,8 @@ const LoginPage = (): JSX.Element => {
       }
     }
   };
+
+  if (loggedIn) return <Redirect to="/all"></Redirect>;
 
   return (
     <form className={Styles["login-form-container"]}>
