@@ -29,37 +29,35 @@ const LoginPage = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <form className={Styles["login-form-container"]}>
-        <label>
-          <b>Username</b>
-        </label>
-        <input
-          className={Styles["login-form-input"]}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-          type="text"
-        ></input>
-        <label>
-          <b>Password</b>
-        </label>
-        <input
-          className={Styles["login-form-input"]}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          type="password"
-        ></input>
-        <button
-          className={`${Styles["login-form-input"]} ${Styles["login-form-button"]}`}
-          onClick={handleLogin}
-        >
-          Submit
-        </button>
-        <button className={Styles["login-form-input"]} onClick={handleRegister}>
-          Sign Up
-        </button>
-      </form>
-    </div>
+    <form className={Styles["login-form-container"]}>
+      <label>
+        <b>Username</b>
+      </label>
+      <input
+        className={Styles["login-form-input"]}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Username"
+        type="text"
+      ></input>
+      <label>
+        <b>Password</b>
+      </label>
+      <input
+        className={Styles["login-form-input"]}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+        type="password"
+      ></input>
+      <button
+        className={`${Styles["login-form-input"]} ${Styles["login-form-button"]}`}
+        onClick={handleLogin}
+      >
+        Submit
+      </button>
+      <button className={Styles["login-form-input"]} onClick={handleRegister}>
+        Sign Up
+      </button>
+    </form>
   );
 };
 

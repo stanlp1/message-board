@@ -5,11 +5,27 @@
 .post-form-container {
     display:flex;
     flex-direction: column;
-    max-width: 20%;
-    margin: 1em;
+    padding: 1em;
+    border-bottom: 2px rgb(239, 243, 244) solid;
 }
 
+
+
+.post-submit-container {
+    display: flex;
+}
+.post-image-input {
+    margin-top: 1.5em;
+    height: 1em;
+    width: 40%;
+}
 .post-form-button {
-    margin-top: 1em;
-    margin-left:auto;
+    margin: 0 !important;
+    margin-top: 1em !important;
+    margin-left:auto !important;
+    max-width:fit-content; 
+    background-color: rgb(29 ,161 ,242) !important;
+    font-weight: bold !important;
+    text-transform: none !important;
+    border-radius:1.5em !important;
 }

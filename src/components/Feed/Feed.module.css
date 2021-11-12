@@ -1,0 +1,15 @@
+.feed-container {
+    flex: 0.3;
+    display:flex;
+    flex-direction: column;
+}
+
+.feed-header {
+    margin: 0;
+    padding: 1em;
+    border-bottom: 2px rgb(239, 243, 244) solid;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: white;
+}

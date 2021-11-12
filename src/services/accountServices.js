@@ -1,7 +1,4 @@
-const baseURL = "http://localhost:4000";
-let headersList = {
-  "Content-Type": "application/json",
-};
+import { baseURL, headersList } from "./postServices";
 
 let userLogin = async (user, pass) => {
   let url = baseURL + "/account/login";
@@ -15,7 +12,7 @@ let userLogin = async (user, pass) => {
     headers: headersList,
     body: JSON.stringify(body),
   });
-  console.log(result);
+  // console.log(result);
   return result;
 };
 

@@ -1,40 +1,53 @@
-import React from "react";
 import { useEffect } from "react";
-import { getAllUserPosts } from "../../services/postServices";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { setPosts } from "../../reducers/feedSlice";
+import {
+  updateAllPosts,
+  updateSubscribedPosts,
+} from "../../reducers/feedSlice";
+import Styles from "./Feed.module.css";
 import PostForm from "./PostForm";
+import Post from "./Post";
 
-const Feed = (): JSX.Element => {
+const Feed = ({ type }: { type: String }): JSX.Element => {
   const feed = useAppSelector((state) => state.feed);
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
 
   useEffect(() => {
     if (user !== "") {
-      getAllUserPosts().then((posts) => {
-        dispatch(setPosts({ posts }));
-        console.log(posts);
-      });
+      if (type === "all") {
+        dispatch(updateAllPosts());
+      } else if (type === "subscribed") {
+        dispatch(updateSubscribedPosts());
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, dispatch]);
 
-  if (feed.length !== 0) {
-    return (
-      <div>
-        <PostForm></PostForm>
-        <div>
-          {feed.map((post, index) => (
-            <div key={index}>{post.content}</div>
-          ))}
-        </div>
-      </div>
-    );
-  }
   return (
-    <div>
-      No Posts
-      <PostForm></PostForm>
+    <div className={Styles["feed-container"]}>
+      <h3 className={Styles["feed-header"]}>Home</h3>
+      <PostForm type={type}></PostForm>
+      {feed.length !== 0 ? (
+        <div>
+          {" "}
+          {feed.map((post, index) => (
+            <Post
+              post_id={post.post_id}
+              key={index}
+              content={post.content}
+              username={post.username}
+              created_at={post.created_at}
+              liked={post.liked}
+              image_url={post.image_url}
+              like_count={post.like_count}
+              comment_count={post.comment_count}
+            ></Post>
+          ))}{" "}
+        </div>
+      ) : (
+        "No Posts"
+      )}
     </div>
   );
 };

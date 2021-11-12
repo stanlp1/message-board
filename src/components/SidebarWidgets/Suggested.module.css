@@ -1,0 +1,14 @@
+.widget-container {
+    border: 2px rgb(239, 243, 244) solid;
+    margin: 1em;
+    max-width: 20vw;
+    padding: 0 1em 1em 1em;
+    background: rgb(243, 241, 241);
+}
+
+.suggested-entry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: .5em;
+}
