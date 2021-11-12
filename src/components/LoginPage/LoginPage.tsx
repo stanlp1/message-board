@@ -27,7 +27,7 @@ const LoginPage = (): JSX.Element => {
       const loginResult = await userLogin(username, password);
       if (loginResult.status === 202) {
         dispatch(login({ user: username }));
-        history.push("/feed");
+        history.push("/all");
       }
     }
   };
