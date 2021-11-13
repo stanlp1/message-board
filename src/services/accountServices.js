@@ -16,11 +16,12 @@ let userLogin = async (user, pass) => {
   return result;
 };
 
-let userRegister = async (user, pass) => {
+let userRegister = async (user, pass, screen_name) => {
   let url = baseURL + "/account/register";
   let body = {
     user,
     pass,
+    screen_name,
   };
   const result = await fetch(url, {
     method: "POST",

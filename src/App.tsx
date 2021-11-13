@@ -7,6 +7,7 @@ import Styles from "./app.module.css";
 import SidebarRight from "./components/SidebarRight/SidebarRight";
 import SubFeed from "./components/Feed/SubFeed";
 import Profile from "./components/Profile/Profile";
+import Register from "./components/Register/Register";
 
 const App = (): JSX.Element => {
   return (
@@ -14,6 +15,9 @@ const App = (): JSX.Element => {
       <Switch>
         <Route path="/login">
           <LoginPage></LoginPage>
+        </Route>
+        <Route path="/register">
+          <Register></Register>
         </Route>
         <AuthRoute path="/all">
           <Sidebar />
