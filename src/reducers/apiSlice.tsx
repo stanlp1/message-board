@@ -14,6 +14,12 @@ export type PostType = {
   screen_name: string;
 };
 
+export type User = {
+  username: string;
+  screen_name: string;
+  bio: string;
+};
+
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
@@ -22,6 +28,12 @@ export const apiSlice = createApi({
   }),
   tagTypes: ["Post"],
   endpoints: (builder) => ({
+    getUser: builder.query<User, string>({
+      query: (username) => `user/${username}`,
+    }),
+    getUserPosts: builder.query<PostRType, string>({
+      query: (username) => `user/${username}/posts`,
+    }),
     getAllPosts: builder.query<PostRType, void>({
       query: () => "posts/getAllPosts",
       providesTags: ["Post"],
@@ -119,4 +131,6 @@ export const {
   useCreatePostMutation,
   useLikePostMutation,
   useUnlikePostMutation,
+  useGetUserQuery,
+  useGetUserPostsQuery,
 } = apiSlice;

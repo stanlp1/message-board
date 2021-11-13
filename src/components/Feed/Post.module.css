@@ -1,8 +1,6 @@
 .post-container {
-    border-bottom: 2px rgb(239, 243, 244) solid;
     padding: 1em;
     transition: background-color .3s;
-    cursor: pointer;
     width: 100%;
 }
 
@@ -69,11 +67,14 @@
     margin-right: 0;
     width: 2.2em;
     heighT: 2.2em;
+    position:static !important;
 }
 
 .post-outer-container {
     display:flex;
     flex-direction: row;
+    border-bottom: 2px rgb(239, 243, 244) solid;
+    cursor: pointer;
 }
 
 .post-outer-container:hover{

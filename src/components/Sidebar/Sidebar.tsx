@@ -1,7 +1,7 @@
 import React from "react";
 import Styles from "./Sidebar.module.css";
 import { useHistory } from "react-router";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userLogout } from "../../services/accountServices";
 import { logout } from "../../reducers/authSlice";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
@@ -9,6 +9,7 @@ import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 const Sidebar = (): JSX.Element => {
   const history = useHistory();
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
   const handleNavClick = async (e: any) => {
     let option = e.target.id;
     // if (option === "/all") {
@@ -30,13 +31,13 @@ const Sidebar = (): JSX.Element => {
         <TextSnippetIcon style={{ fontSize: "40px" }} />
       </div>
 
-      {/* <div
+      <div
         onClick={handleNavClick}
-        id="/profile"
+        id={`/profile/${user}`}
         className={Styles["sidebar-item"]}
       >
         Profile
-      </div> */}
+      </div>
       <div
         onClick={handleNavClick}
         id="/all"

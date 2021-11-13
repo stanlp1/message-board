@@ -14,6 +14,7 @@ import {
   useLikePostMutation,
   useUnlikePostMutation,
 } from "../../reducers/apiSlice";
+import { useHistory } from "react-router";
 const months = [
   "Jan",
   "Feb",
@@ -34,6 +35,7 @@ const Post = ({ post }: { post: PostType }) => {
   const [comments, setComments] = useState<
     { username: string; content: string }[]
   >([]);
+  const history = useHistory();
   const [likePost] = useLikePostMutation();
   const [unlikePost] = useUnlikePostMutation();
   const [comVis, setComVis] = useState(false);
@@ -66,6 +68,9 @@ const Post = ({ post }: { post: PostType }) => {
     setComVis(!comVis);
   };
 
+  const handleRedirectProfile = async () => {
+    history.push(`/profile/${post.username}`);
+  };
   return (
     <div className={Styles["post-outer-container"]}>
       <Avatar
@@ -75,9 +80,12 @@ const Post = ({ post }: { post: PostType }) => {
       <div className={Styles["post-container"]}>
         <div onClick={toggleComments}>
           <div className={Styles["post-header"]}>
-            <div className={Styles["user-name-container"]}>
-              <div className={Styles["username"]}>{post.username}</div>
-              <div className={Styles.screenname}>@{post.screen_name}</div>
+            <div
+              onClick={handleRedirectProfile}
+              className={Styles["user-name-container"]}
+            >
+              <div className={Styles["username"]}>{post.screen_name}</div>
+              <div className={Styles.screenname}>@{post.username}</div>
               <div className={Styles.screenname}>
                 {timeDiff > 24
                   ? `${months[createdDate.getMonth()]} ${createdDate.getDay()}`

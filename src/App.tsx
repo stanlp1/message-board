@@ -6,6 +6,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import Styles from "./app.module.css";
 import SidebarRight from "./components/SidebarRight/SidebarRight";
 import SubFeed from "./components/Feed/SubFeed";
+import Profile from "./components/Profile/Profile";
 
 const App = (): JSX.Element => {
   return (
@@ -24,6 +25,11 @@ const App = (): JSX.Element => {
           <SubFeed></SubFeed>
           <SidebarRight />
         </AuthRoute>
+        <Route path="/profile/:username">
+          <Sidebar />
+          <Profile />
+          <SidebarRight />
+        </Route>
         <AuthRoute path="/">
           <Redirect to="/all"></Redirect>
         </AuthRoute>

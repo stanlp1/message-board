@@ -25,6 +25,7 @@
     margin-right: 0;
     width: 2.2em;
     heighT: 2.2em;
+    position: static !important;
 }
 
 .post-submit-container {
