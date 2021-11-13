@@ -10,7 +10,8 @@
     max-width: 100%;
     max-height: 400px;
     border-radius: 1.5em;
-
+    border: 2px rgb(239, 243, 244) solid;
+    margin-bottom: 1em;
 }
 
 .post-header {
