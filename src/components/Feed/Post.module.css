@@ -3,12 +3,9 @@
     padding: 1em;
     transition: background-color .3s;
     cursor: pointer;
+    width: 100%;
 }
 
-.post-container:hover {
-    background-color: lightgray;
-
-}
 
 .post-image {
 
@@ -47,4 +44,38 @@
     left: 50%;
     position:absolute;
     transform: translate(-50%, -50%)
+}
+
+.user-name-container {
+    display:flex;
+    
+}
+
+.user-name-container:hover .username {
+    text-decoration: underline;
+}
+.username {
+    font-weight: bold;
+    margin-right: .5em;
+}
+
+.screenname {
+    margin-right: .5em;
+    color: gray;
+}
+
+.post-avatar {
+    margin: .5em;
+    margin-right: 0;
+    width: 2.2em;
+    heighT: 2.2em;
+}
+
+.post-outer-container {
+    display:flex;
+    flex-direction: row;
+}
+
+.post-outer-container:hover{
+    background-color: lightgray;
 }

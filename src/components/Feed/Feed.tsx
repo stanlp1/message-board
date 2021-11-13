@@ -1,53 +1,44 @@
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  updateAllPosts,
-  updateSubscribedPosts,
-} from "../../reducers/feedSlice";
+import { PostType, useGetAllPostsQuery } from "../../reducers/apiSlice";
 import Styles from "./Feed.module.css";
 import PostForm from "./PostForm";
 import Post from "./Post";
+import { CircularProgress } from "@mui/material";
 
-const Feed = ({ type }: { type: String }): JSX.Element => {
-  const feed = useAppSelector((state) => state.feed);
+const Feed = (): JSX.Element => {
+  //const feed = useAppSelector((state) => state.feed);
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
+  const {
+    data: feed,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetAllPostsQuery();
 
-  useEffect(() => {
-    if (user !== "") {
-      if (type === "all") {
-        dispatch(updateAllPosts());
-      } else if (type === "subscribed") {
-        dispatch(updateSubscribedPosts());
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, dispatch]);
-
+  let content;
+  // useEffect(() => {
+  //   if (user !== "") {
+  //     if (type === "all") {
+  //       dispatch(updateAllPosts());
+  //     } else if (type === "subscribed") {
+  //       dispatch(updateSubscribedPosts());
+  //     }
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [user, dispatch]);
+  if (isLoading) content = <CircularProgress></CircularProgress>;
+  else if (isSuccess)
+    content = feed!.map((post: PostType, index: any) => (
+      <Post post={post}></Post>
+    ));
+  console.log(feed);
   return (
     <div className={Styles["feed-container"]}>
       <h3 className={Styles["feed-header"]}>Home</h3>
-      <PostForm type={type}></PostForm>
-      {feed.length !== 0 ? (
-        <div>
-          {" "}
-          {feed.map((post, index) => (
-            <Post
-              post_id={post.post_id}
-              key={index}
-              content={post.content}
-              username={post.username}
-              created_at={post.created_at}
-              liked={post.liked}
-              image_url={post.image_url}
-              like_count={post.like_count}
-              comment_count={post.comment_count}
-            ></Post>
-          ))}{" "}
-        </div>
-      ) : (
-        "No Posts"
-      )}
+      <PostForm></PostForm>
+      {content}
     </div>
   );
 };

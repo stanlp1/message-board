@@ -2,10 +2,6 @@ import React from "react";
 import Styles from "./Sidebar.module.css";
 import { useHistory } from "react-router";
 import { useAppDispatch } from "../../app/hooks";
-import {
-  updateAllPosts,
-  updateSubscribedPosts,
-} from "../../reducers/feedSlice";
 import { userLogout } from "../../services/accountServices";
 import { logout } from "../../reducers/authSlice";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
@@ -15,11 +11,11 @@ const Sidebar = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const handleNavClick = async (e: any) => {
     let option = e.target.id;
-    if (option === "/all") {
-      dispatch(updateAllPosts());
-    } else if (option === "/subscribed") {
-      dispatch(updateSubscribedPosts());
-    }
+    // if (option === "/all") {
+    //   dispatch(updateAllPosts());
+    // } else if (option === "/subscribed") {
+    //   dispatch(updateSubscribedPosts());
+    // }
     history.push(option);
   };
 

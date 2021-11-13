@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import authSlice from "../reducers/authSlice";
 import feedSlice from "../reducers/feedSlice";
 import { persistReducer } from "redux-persist";
+import { apiSlice } from "../reducers/apiSlice";
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
@@ -11,9 +12,17 @@ const persistConfig = {
   whitelist: ["auth"],
 };
 
-const reducers = combineReducers({ auth: authSlice, feed: feedSlice });
+const reducers = combineReducers({
+  auth: authSlice,
+  feed: feedSlice,
+  [apiSlice.reducerPath]: apiSlice.reducer,
+});
 const persistedReducer = persistReducer(persistConfig, reducers);
-export const store = configureStore({ reducer: persistedReducer });
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+});
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

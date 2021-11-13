@@ -5,6 +5,7 @@ import AuthRoute from "./components/AuthRoute/AuthRoute";
 import LoginPage from "./components/LoginPage/LoginPage";
 import Styles from "./app.module.css";
 import SidebarRight from "./components/SidebarRight/SidebarRight";
+import SubFeed from "./components/Feed/SubFeed";
 
 const App = (): JSX.Element => {
   return (
@@ -15,12 +16,12 @@ const App = (): JSX.Element => {
         </Route>
         <AuthRoute path="/all">
           <Sidebar />
-          <Feed type="all"></Feed>
+          <Feed></Feed>
           <SidebarRight />
         </AuthRoute>
         <AuthRoute path="/subscribed">
           <Sidebar />
-          <Feed type="subscribed"></Feed>
+          <SubFeed></SubFeed>
           <SidebarRight />
         </AuthRoute>
         <AuthRoute path="/">
