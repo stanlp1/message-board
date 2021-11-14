@@ -38,9 +38,26 @@ export const apiSlice = createApi({
       query: () => "posts/getAllPosts",
       providesTags: ["Post"],
     }),
+    getSuggestedUsers: builder.query<any, void>({
+      query: () => "user/suggestedUsers",
+    }),
     getSubPosts: builder.query<PostRType, void>({
       query: () => "posts/getSubscribedPosts",
       providesTags: ["Post"],
+    }),
+    login: builder.mutation({
+      query: (body) => ({
+        url: "account/login",
+        method: "POST",
+        body: body,
+      }),
+    }),
+    register: builder.mutation({
+      query: (body) => ({
+        url: "account/register",
+        method: "POST",
+        body: body,
+      }),
     }),
     createPost: builder.mutation({
       query: (postContent) => ({
@@ -133,4 +150,7 @@ export const {
   useUnlikePostMutation,
   useGetUserQuery,
   useGetUserPostsQuery,
+  useLoginMutation,
+  useRegisterMutation,
+  useGetSuggestedUsersQuery,
 } = apiSlice;

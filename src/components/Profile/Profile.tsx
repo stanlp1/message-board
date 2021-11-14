@@ -12,22 +12,10 @@ import { useHistory } from "react-router";
 let Profile = (): JSX.Element => {
   let history = useHistory();
   let { username } = useParams<{ username: string }>();
-  const {
-    data: user,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetUserQuery(username);
+  const { data: user } = useGetUserQuery(username);
 
   let content;
-  const {
-    data: posts,
-    isLoading: isLoading2,
-    isSuccess: isSucc2,
-    isError: isError2,
-    error: error2,
-  } = useGetUserPostsQuery(username);
+  const { data: posts, isSuccess: isSucc2 } = useGetUserPostsQuery(username);
   console.log(user);
   if (isSucc2)
     content = posts!.map((post: PostType, index: any) => (

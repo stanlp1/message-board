@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userLogout } from "../../services/accountServices";
 import { logout } from "../../reducers/authSlice";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
+import { apiSlice } from "../../reducers/apiSlice";
 
 const Sidebar = (): JSX.Element => {
   const history = useHistory();
@@ -17,6 +18,28 @@ const Sidebar = (): JSX.Element => {
     // } else if (option === "/subscribed") {
     //   dispatch(updateSubscribedPosts());
     // }
+    // dispatch(
+    //   api.endpoints.getPosts.initiate(
+    //     { count: 5 },
+    //     { subscribe: false, forceRefetch: true }
+
+    if (option === "/all") {
+      console.log("dispatching refetch");
+      dispatch(
+        apiSlice.endpoints.getAllPosts.initiate(undefined, {
+          subscribe: false,
+          forceRefetch: true,
+        })
+      );
+    } else if (option === "/subscribed") {
+      console.log("sub posts");
+      dispatch(
+        apiSlice.endpoints.getSubPosts.initiate(undefined, {
+          subscribe: false,
+          forceRefetch: true,
+        })
+      );
+    }
     history.push(option);
   };
 

@@ -1,32 +1,48 @@
 import { login } from "../../reducers/authSlice";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { userLogin, userRegister } from "../../services/accountServices";
+import { useEffect } from "react";
 import { useHistory } from "react-router";
-import { Redirect } from "react-router";
 import Styles from "../LoginPage/LoginPage.module.css";
-
+import LoadingButton from "../common/LoadingButton";
+import { Button } from "@mui/material";
+import { useLoginMutation, useRegisterMutation } from "../../reducers/apiSlice";
 const Register = (): JSX.Element => {
   const [screen_name, setScreenname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  let [register, { isLoading, isSuccess }] = useRegisterMutation();
+  let [loginUser, { isLoading: loginLoading, isSuccess: loginSuccess }] =
+    useLoginMutation();
   let loggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   let history = useHistory();
   const dispatch = useAppDispatch();
 
+  if (loggedIn) history.push("/all");
+
   const handleRegister = async (e: any) => {
     e.preventDefault();
-    const registerResult = await userRegister(username, password, screen_name);
-    if (registerResult.status === 202) {
-      const loginResult = await userLogin(username, password);
-      if (loginResult.status === 202) {
-        dispatch(login({ user: username }));
-        history.push("/all");
-      }
-    }
+    register({ user: username, pass: password, screen_name });
+    // const registerResult = await userRegister(username, password, screen_name);
+    // if (registerResult.status === 202) {
+    //   const loginResult = await userLogin(username, password);
+    //   if (loginResult.status === 202) {
+    //     dispatch(login({ user: username }));
+    //     history.push("/all");
+    //   }
+    // }
   };
 
-  if (loggedIn) return <Redirect to="/all"></Redirect>;
+  useEffect(() => {
+    if (isSuccess) {
+      loginUser({ user: username, pass: password });
+    }
+  }, [isSuccess, loginUser, password, username]);
+
+  if (loginSuccess) {
+    dispatch(login({ user: username }));
+    history.push("/feed");
+  }
 
   return (
     <form className={Styles["login-form-container"]}>
@@ -57,15 +73,22 @@ const Register = (): JSX.Element => {
         placeholder="Password"
         type="password"
       ></input>
-      <button className={Styles["login-form-input"]} onClick={handleRegister}>
-        Sign Up
-      </button>
-      <button
-        className={Styles["login-form-input"]}
-        onClick={() => history.push("/login")}
-      >
-        Back to Login Page
-      </button>
+      <div className={Styles["login-button-container"]}>
+        <LoadingButton
+          variant="outlined"
+          className={Styles["login-form-input"]}
+          onClick={handleRegister}
+          isLoading={isLoading || loginLoading}
+          content="Sign Up"
+        ></LoadingButton>
+        <Button
+          variant="outlined"
+          className={Styles["login-form-input"]}
+          onClick={() => history.push("/login")}
+        >
+          Back to Login Page
+        </Button>
+      </div>
     </form>
   );
 };

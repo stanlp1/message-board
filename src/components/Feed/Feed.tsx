@@ -1,4 +1,3 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { PostType, useGetAllPostsQuery } from "../../reducers/apiSlice";
 import Styles from "./Feed.module.css";
 import PostForm from "./PostForm";
@@ -7,15 +6,9 @@ import { CircularProgress } from "@mui/material";
 
 const Feed = (): JSX.Element => {
   //const feed = useAppSelector((state) => state.feed);
-  const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.auth.user);
-  const {
-    data: feed,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetAllPostsQuery();
+  // const dispatch = useAppDispatch();
+  // const user = useAppSelector((state) => state.auth.user);
+  const { data: feed, isLoading, isSuccess } = useGetAllPostsQuery();
 
   let content;
   // useEffect(() => {

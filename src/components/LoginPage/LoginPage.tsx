@@ -1,25 +1,31 @@
 import { login } from "../../reducers/authSlice";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { userLogin, userRegister } from "../../services/accountServices";
+import LoadingButton from "../common/LoadingButton";
 import { useHistory } from "react-router";
-import { Redirect } from "react-router";
 import Styles from "./LoginPage.module.css";
+import { Button } from "@mui/material";
+import { useLoginMutation } from "../../reducers/apiSlice";
 
 const LoginPage = (): JSX.Element => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  let [loginUser, { isSuccess, isLoading }] = useLoginMutation();
   let loggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   let history = useHistory();
   const dispatch = useAppDispatch();
 
+  if (loggedIn) {
+    history.push("/all");
+  }
   const handleLogin = async (e: any) => {
     e.preventDefault();
-    const loginResult = await userLogin(username, password);
-    if (loginResult.status === 202) {
-      dispatch(login({ user: username }));
-      history.push("/feed");
-    }
+    loginUser({ user: username, pass: password });
+    // const loginResult = await userLogin(username, password);
+    // if (loginResult.status === 202) {
+    //   dispatch(login({ user: username }));
+    //   history.push("/feed");
+    // }
   };
 
   const handleRegister = async (e: any) => {
@@ -27,7 +33,10 @@ const LoginPage = (): JSX.Element => {
     history.push("/register");
   };
 
-  if (loggedIn) return <Redirect to="/all"></Redirect>;
+  if (isSuccess) {
+    dispatch(login({ user: username }));
+    history.push("/feed");
+  }
 
   return (
     <form className={Styles["login-form-container"]}>
@@ -49,15 +58,22 @@ const LoginPage = (): JSX.Element => {
         placeholder="Password"
         type="password"
       ></input>
-      <button
-        className={`${Styles["login-form-input"]} ${Styles["login-form-button"]}`}
-        onClick={handleLogin}
-      >
-        Submit
-      </button>
-      <button className={Styles["login-form-input"]} onClick={handleRegister}>
-        Sign Up
-      </button>
+      <div className={Styles["login-button-container"]}>
+        <LoadingButton
+          variant="outlined"
+          className={`${Styles["login-form-input"]} ${Styles["login-form-button"]}`}
+          onClick={handleLogin}
+          content="Log In"
+          isLoading={isLoading}
+        ></LoadingButton>
+        <Button
+          variant="outlined"
+          className={Styles["login-form-input"]}
+          onClick={handleRegister}
+        >
+          Sign Up
+        </Button>
+      </div>
     </form>
   );
 };

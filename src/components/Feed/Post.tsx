@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { getComments } from "../../services/postServices";
-import { useAppDispatch } from "../../app/hooks";
 import Styles from "./Post.module.css";
 import PostComments from "./PostComments";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -39,7 +38,6 @@ const Post = ({ post }: { post: PostType }) => {
   const [likePost] = useLikePostMutation();
   const [unlikePost] = useUnlikePostMutation();
   const [comVis, setComVis] = useState(false);
-  const dispatch = useAppDispatch();
   const createdDate = new Date(post.created_at);
   const currentDate = new Date();
   const timeDiff =
@@ -72,13 +70,13 @@ const Post = ({ post }: { post: PostType }) => {
     history.push(`/profile/${post.username}`);
   };
   return (
-    <div className={Styles["post-outer-container"]}>
+    <div onClick={toggleComments} className={Styles["post-outer-container"]}>
       <Avatar
         className={Styles["post-avatar"]}
         {...stringAvatar(post.username)}
       />
       <div className={Styles["post-container"]}>
-        <div onClick={toggleComments}>
+        <div>
           <div className={Styles["post-header"]}>
             <div
               onClick={handleRedirectProfile}

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import Styles from "./PostForm.module.css";
-import { Button } from "@mui/material";
 import { useCreatePostMutation } from "../../reducers/apiSlice";
 import { Avatar } from "@mui/material";
+import LoadingButton from "../common/LoadingButton";
 
 function stringToColor(string: string) {
   let hash = 0;
@@ -39,7 +39,6 @@ const PostForm = (): JSX.Element => {
   let username = useAppSelector((state) => state.auth.user);
   const [image, setImage] = useState("");
   const [createPost, { isLoading }] = useCreatePostMutation();
-  const dispatch = useAppDispatch();
   const handleNewPost = async () => {
     await createPost({ content: post, image }).unwrap();
     //await makeNewPost(post, image);
@@ -65,13 +64,13 @@ const PostForm = (): JSX.Element => {
             type="text"
             placeholder="Image URL(optional)"
           ></input>
-          <Button
+          <LoadingButton
             className={Styles["post-form-button"]}
             onClick={handleNewPost}
             variant="contained"
-          >
-            Post
-          </Button>
+            isLoading={isLoading}
+            content="Post"
+          />
         </div>
       </div>
     </div>
