@@ -50,17 +50,18 @@
     
 }
 
-.user-name-container:hover .username {
+.user-name-container:hover .screenname {
     text-decoration: underline;
 }
 .username {
-    font-weight: bold;
     margin-right: .5em;
+    color: gray;
+
 }
 
 .screenname {
+    font-weight: bold;
     margin-right: .5em;
-    color: gray;
 }
 
 .post-avatar {

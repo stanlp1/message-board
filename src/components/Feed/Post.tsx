@@ -32,7 +32,7 @@ const months = [
 const Post = ({ post }: { post: PostType }) => {
   const [open, setOpen] = useState(false);
   const [comments, setComments] = useState<
-    { username: string; content: string }[]
+    { screen_name: string; username: string; content: string }[]
   >([]);
   const history = useHistory();
   const [likePost] = useLikePostMutation();
@@ -82,9 +82,9 @@ const Post = ({ post }: { post: PostType }) => {
               onClick={handleRedirectProfile}
               className={Styles["user-name-container"]}
             >
-              <div className={Styles["username"]}>{post.screen_name}</div>
-              <div className={Styles.screenname}>@{post.username}</div>
-              <div className={Styles.screenname}>
+              <div className={Styles.screenname}>{post.screen_name}</div>
+              <div className={Styles.username}>@{post.username}</div>
+              <div className={Styles.username}>
                 {timeDiff > 24
                   ? `${months[createdDate.getMonth()]} ${createdDate.getDay()}`
                   : `${timeDiff}h`}
