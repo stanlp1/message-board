@@ -13,12 +13,13 @@ const Suggested = (): JSX.Element => {
   // }, []);
   return (
     <div className={Styles["widget-container"]}>
-      <h5>Suggested Users</h5>
+      <h4 className={Styles["widget-title"]}>Suggested Users</h4>
       {isSuccess &&
         users.map((user: any, index: any) => (
           <SuggestedUser
+            isLast={index === users.length - 1}
             key={user.username}
-            username={user.username}
+            user={user}
           ></SuggestedUser>
         ))}
     </div>

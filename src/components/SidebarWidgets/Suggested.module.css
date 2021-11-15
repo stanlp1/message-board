@@ -2,13 +2,56 @@
     border: 2px rgb(239, 243, 244) solid;
     margin: 1em;
     max-width: 20vw;
-    padding: 0 1em 1em 1em;
     background: rgb(243, 241, 241);
+    border-radius: 2em;
+}
+.widget-title {
+    margin-left : .7em;
 }
 
+.last-element {
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+}
 .suggested-entry {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: .5em;
+    padding: .7em;
+    transition-duration: 0.2s;
+}
+
+.suggested-entry:hover {
+    background: rgb(0, 0, 0, 0.1);
+}
+
+.suggested-avatar{
+    margin-right: 1em;
+}
+
+.inner-container {
+    display:flex;
+    flex-direction: row;
+}
+.inner-container:hover>div>div{
+    text-decoration: underline;
+}
+
+.follow-button {
+    background-color: rgb(39, 39, 39) !important;
+    border-radius: 1.5em !important;
+    text-transform: none !important;
+    font-weight: bold !important;
+    font-size: .8em !important;
+    height: 2.5em ;
+    width: 6em ;
+    align-self: center;
+}
+
+.disabled-button {
+    background-color: rgb(189, 189, 189) !important;
+}
+
+.follow-button:hover {
+    background-color: rgb(77, 76, 76) !important;
 }

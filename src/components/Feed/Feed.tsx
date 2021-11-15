@@ -26,10 +26,9 @@ const Feed = (): JSX.Element => {
     content = feed!.map((post: PostType, index: any) => (
       <Post post={post}></Post>
     ));
-  console.log(feed);
   return (
     <div className={Styles["feed-container"]}>
-      <h3 className={Styles["feed-header"]}>Home</h3>
+      <h3 className={Styles["feed-header"]}>All</h3>
       <PostForm></PostForm>
       {content}
     </div>

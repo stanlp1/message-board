@@ -1,6 +1,5 @@
 .sidebar-container {
     flex: 0.3;
-    font-size: 20px;
     height: 100vh;
     float:left;
     position: -webkit-sticky;

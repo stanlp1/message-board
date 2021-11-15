@@ -1,6 +1,5 @@
 .post-container {
     padding: 1em;
-    transition: background-color .3s;
     width: 100%;
 }
 
@@ -77,8 +76,9 @@
     flex-direction: row;
     border-bottom: 2px rgb(239, 243, 244) solid;
     cursor: pointer;
+    transition: .2s;
 }
 
 .post-outer-container:hover{
-    background-color: lightgray;
+    background: rgb(0, 0, 0, 0.1);
 }

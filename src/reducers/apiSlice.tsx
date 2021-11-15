@@ -45,6 +45,13 @@ export const apiSlice = createApi({
       query: () => "posts/getSubscribedPosts",
       providesTags: ["Post"],
     }),
+    follow: builder.mutation({
+      query: (body) => ({
+        url: "user/followUser",
+        method: "POST",
+        body: body,
+      }),
+    }),
     login: builder.mutation({
       query: (body) => ({
         url: "account/login",
@@ -153,4 +160,5 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useGetSuggestedUsersQuery,
+  useFollowMutation,
 } = apiSlice;

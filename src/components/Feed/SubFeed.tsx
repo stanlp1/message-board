@@ -16,7 +16,7 @@ const SubFeed = (): JSX.Element => {
     ));
   return (
     <div className={Styles["feed-container"]}>
-      <h3 className={Styles["feed-header"]}>Home</h3>
+      <h3 className={Styles["feed-header"]}>Subscribed</h3>
       <PostForm></PostForm>
       {content}
     </div>
