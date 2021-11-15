@@ -2,6 +2,7 @@ import { Button, CircularProgress } from "@mui/material";
 import { Fragment } from "react";
 import Styles from "./LoadingButton.module.css";
 let LoadingButton = ({
+  type,
   disabledText,
   onClick,
   className,
@@ -13,6 +14,7 @@ let LoadingButton = ({
 }: any) => {
   return (
     <Button
+      type={type}
       disabled={isLoading || disabled}
       variant={variant}
       className={

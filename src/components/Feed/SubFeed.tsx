@@ -9,11 +9,17 @@ const SubFeed = (): JSX.Element => {
 
   let content;
 
-  if (isLoading) content = <CircularProgress></CircularProgress>;
+  if (isLoading)
+    content = (
+      <CircularProgress
+        className={Styles["loading-indicator"]}
+      ></CircularProgress>
+    );
   else if (isSuccess)
     content = feed!.map((post: PostType, index: any) => (
       <Post post={post}></Post>
     ));
+
   return (
     <div className={Styles["feed-container"]}>
       <h3 className={Styles["feed-header"]}>Subscribed</h3>

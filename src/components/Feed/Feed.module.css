@@ -13,3 +13,7 @@
     top: 0;
     background: white;
 }
+
+.loading-indicator {
+    margin: 2em auto 0 auto;
+}

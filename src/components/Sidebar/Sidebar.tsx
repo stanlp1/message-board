@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Styles from "./Sidebar.module.css";
 import { useHistory } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";

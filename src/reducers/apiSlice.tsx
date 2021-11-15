@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export type PostRType = PostType[];
-
 export type PostType = {
   content: string;
   username: string;
@@ -31,17 +29,17 @@ export const apiSlice = createApi({
     getUser: builder.query<User, string>({
       query: (username) => `user/${username}`,
     }),
-    getUserPosts: builder.query<PostRType, string>({
+    getUserPosts: builder.query<PostType[], string>({
       query: (username) => `user/${username}/posts`,
     }),
-    getAllPosts: builder.query<PostRType, void>({
+    getAllPosts: builder.query<PostType[], void>({
       query: () => "posts/getAllPosts",
       providesTags: ["Post"],
     }),
     getSuggestedUsers: builder.query<any, void>({
       query: () => "user/suggestedUsers",
     }),
-    getSubPosts: builder.query<PostRType, void>({
+    getSubPosts: builder.query<PostType[], void>({
       query: () => "posts/getSubscribedPosts",
       providesTags: ["Post"],
     }),

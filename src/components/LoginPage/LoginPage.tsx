@@ -71,6 +71,7 @@ const LoginPage = (): JSX.Element => {
           onClick={handleLogin}
           content="Log In"
           isLoading={isLoading}
+          disabled={username === "" || password === ""}
         ></LoadingButton>
         <Button
           variant="outlined"

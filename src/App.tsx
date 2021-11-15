@@ -29,11 +29,11 @@ const App = (): JSX.Element => {
           <SubFeed></SubFeed>
           <SidebarRight />
         </AuthRoute>
-        <Route path="/profile/:username">
+        <AuthRoute path="/profile/:username">
           <Sidebar />
           <Profile />
           <SidebarRight />
-        </Route>
+        </AuthRoute>
         <AuthRoute path="/">
           <Redirect to="/all"></Redirect>
         </AuthRoute>

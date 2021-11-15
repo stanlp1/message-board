@@ -1,5 +1,5 @@
 import Styles from "./Profile.module.css";
-import { Avatar } from "@mui/material";
+import { Avatar, CircularProgress } from "@mui/material";
 import {
   PostType,
   useGetUserPostsQuery,
@@ -13,14 +13,22 @@ let Profile = (): JSX.Element => {
   let history = useHistory();
   let { username } = useParams<{ username: string }>();
   const { data: user } = useGetUserQuery(username);
+  const {
+    data: posts,
+    isLoading,
+    isSuccess,
+    isFetching,
+  } = useGetUserPostsQuery(username);
 
   let content;
-  const { data: posts, isSuccess: isSucc2 } = useGetUserPostsQuery(username);
-  console.log(user);
-  if (isSucc2)
+  if (isSuccess)
     content = posts!.map((post: PostType, index: any) => (
-      <Post post={post}></Post>
+      <Post key={post.post_id} post={post}></Post>
     ));
+  else if (isLoading || isFetching) {
+    content = <CircularProgress className={Styles["loading-indicator"]} />;
+  }
+
   return (
     <div className={Styles["profile-container"]}>
       <div className={Styles["profile-header-container"]}>

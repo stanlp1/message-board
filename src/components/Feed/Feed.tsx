@@ -21,7 +21,12 @@ const Feed = (): JSX.Element => {
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [user, dispatch]);
-  if (isLoading) content = <CircularProgress></CircularProgress>;
+  if (isLoading)
+    content = (
+      <CircularProgress
+        className={Styles["loading-indicator"]}
+      ></CircularProgress>
+    );
   else if (isSuccess)
     content = feed!.map((post: PostType, index: any) => (
       <Post post={post}></Post>

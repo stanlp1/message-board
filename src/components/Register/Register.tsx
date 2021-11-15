@@ -54,6 +54,7 @@ const Register = (): JSX.Element => {
         onChange={(e) => setScreenname(e.target.value)}
         placeholder="Screen Name"
         type="text"
+        required
       ></input>
       <label>
         <b>Username</b>
@@ -63,6 +64,7 @@ const Register = (): JSX.Element => {
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Username"
         type="text"
+        required
       ></input>
       <label>
         <b>Password</b>
@@ -72,14 +74,17 @@ const Register = (): JSX.Element => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
         type="password"
+        required
       ></input>
       <div className={Styles["login-button-container"]}>
         <LoadingButton
+          type="submit"
           variant="outlined"
           className={Styles["login-form-input"]}
           onClick={handleRegister}
           isLoading={isLoading || loginLoading}
           content="Sign Up"
+          disabled={username === "" || password === "" || screen_name === ""}
         ></LoadingButton>
         <Button
           variant="outlined"
