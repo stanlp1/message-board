@@ -28,6 +28,12 @@ const LoginPage = (): JSX.Element => {
     // }
   };
 
+  const handleTestLogin = async (e: any) => {
+    e.preventDefault();
+    setUsername("test");
+    loginUser({ user: "test", pass: "test" });
+  };
+
   const handleRegister = async (e: any) => {
     e.preventDefault();
     history.push("/register");
@@ -61,19 +67,27 @@ const LoginPage = (): JSX.Element => {
       <div className={Styles["login-button-container"]}>
         <LoadingButton
           variant="outlined"
-          className={`${Styles["login-form-input"]} ${Styles["login-form-button"]}`}
+          className={`${Styles["login-form-button"]}`}
           onClick={handleLogin}
           content="Log In"
           isLoading={isLoading}
         ></LoadingButton>
         <Button
           variant="outlined"
-          className={Styles["login-form-input"]}
+          className={Styles["login-form-button"]}
           onClick={handleRegister}
         >
           Sign Up
         </Button>
       </div>
+
+      <LoadingButton
+        variant="outlined"
+        className={`${Styles["login-form-button"]}`}
+        onClick={handleTestLogin}
+        content="Log Into Test Account"
+        isLoading={isLoading}
+      ></LoadingButton>
     </form>
   );
 };

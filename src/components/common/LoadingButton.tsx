@@ -1,4 +1,5 @@
 import { Button, CircularProgress } from "@mui/material";
+import { Fragment } from "react";
 import Styles from "./LoadingButton.module.css";
 let LoadingButton = ({
   onClick,
@@ -8,9 +9,16 @@ let LoadingButton = ({
   content,
 }: any) => {
   return (
-    <Button variant={variant} className={className} onClick={onClick}>
+    <Button
+      disabled={isLoading}
+      variant={variant}
+      className={className}
+      onClick={onClick}
+    >
       {isLoading ? (
-        <CircularProgress className={Styles["login-circular-indicator"]} />
+        <Fragment>
+          <CircularProgress className={Styles["login-circular-indicator"]} />
+        </Fragment>
       ) : (
         content
       )}
