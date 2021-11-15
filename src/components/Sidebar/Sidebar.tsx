@@ -56,7 +56,11 @@ const Sidebar = (): JSX.Element => {
   return (
     <div className={Styles["sidebar-outer-container"]}>
       <div className={Styles["sidebar-container"]}>
-        <div className={Styles["sidebar-logo-container"]}>
+        <div
+          onClick={handleNavClick}
+          id="/all"
+          className={Styles["sidebar-logo-container"]}
+        >
           <TextSnippetIcon className={Styles["sidebar-logo"]} />
         </div>
         <div>
