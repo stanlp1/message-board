@@ -9,7 +9,6 @@ import FollowInfo from "./components/Profile/FollowInfo";
 import SubFeed from "./components/Feed/SubFeed";
 import Profile from "./components/Profile/Profile";
 import Register from "./components/Register/Register";
-import FollowingPage from "./components/Profile/FollowingPage";
 
 const App = (): JSX.Element => {
   return (

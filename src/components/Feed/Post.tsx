@@ -90,7 +90,7 @@ const Post = ({ post }: { post: PostType }) => {
               <div className={Styles.username}>@{post.username}</div>
               <div className={Styles.username}>
                 {timeDiff > 24
-                  ? `${months[createdDate.getMonth()]} ${createdDate.getDay()}`
+                  ? `${months[createdDate.getMonth()]} ${createdDate.getDate()}`
                   : `${timeDiff}h`}
               </div>
             </div>
