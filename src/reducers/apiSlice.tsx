@@ -15,7 +15,14 @@ export type PostType = {
 export type User = {
   username: string;
   screen_name: string;
+  follower_count: number;
+  following_count: number;
   bio: string;
+};
+
+export type FUser = {
+  username: string;
+  screen_name: string;
 };
 
 export const apiSlice = createApi({
@@ -26,6 +33,12 @@ export const apiSlice = createApi({
   }),
   tagTypes: ["Post"],
   endpoints: (builder) => ({
+    getFollower: builder.query<FUser[], string>({
+      query: (username) => `user/${username}/follower`,
+    }),
+    getFollowing: builder.query<FUser[], string>({
+      query: (username) => `user/${username}/following`,
+    }),
     getUser: builder.query<User, string>({
       query: (username) => `user/${username}`,
     }),
@@ -159,4 +172,6 @@ export const {
   useRegisterMutation,
   useGetSuggestedUsersQuery,
   useFollowMutation,
+  useGetFollowerQuery,
+  useGetFollowingQuery,
 } = apiSlice;

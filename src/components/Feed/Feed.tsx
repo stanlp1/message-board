@@ -29,7 +29,7 @@ const Feed = (): JSX.Element => {
     );
   else if (isSuccess)
     content = feed!.map((post: PostType, index: any) => (
-      <Post post={post}></Post>
+      <Post key={post.post_id} post={post}></Post>
     ));
   return (
     <div className={Styles["feed-container"]}>

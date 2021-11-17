@@ -5,9 +5,11 @@ import AuthRoute from "./components/AuthRoute/AuthRoute";
 import LoginPage from "./components/LoginPage/LoginPage";
 import Styles from "./app.module.css";
 import SidebarRight from "./components/SidebarRight/SidebarRight";
+import FollowInfo from "./components/Profile/FollowInfo";
 import SubFeed from "./components/Feed/SubFeed";
 import Profile from "./components/Profile/Profile";
 import Register from "./components/Register/Register";
+import FollowingPage from "./components/Profile/FollowingPage";
 
 const App = (): JSX.Element => {
   return (
@@ -29,11 +31,22 @@ const App = (): JSX.Element => {
           <SubFeed></SubFeed>
           <SidebarRight />
         </AuthRoute>
+        <AuthRoute path="/profile/:username/followers">
+          <Sidebar />
+          <FollowInfo />
+          <SidebarRight />
+        </AuthRoute>
+        <AuthRoute path="/profile/:username/following">
+          <Sidebar />
+          <FollowInfo />
+          <SidebarRight />
+        </AuthRoute>
         <AuthRoute path="/profile/:username">
           <Sidebar />
           <Profile />
           <SidebarRight />
         </AuthRoute>
+
         <AuthRoute path="/">
           <Redirect to="/all"></Redirect>
         </AuthRoute>

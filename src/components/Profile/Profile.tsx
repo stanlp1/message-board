@@ -21,14 +21,20 @@ let Profile = (): JSX.Element => {
   } = useGetUserPostsQuery(username);
 
   let content;
-  if (isSuccess)
+
+  if (isLoading || isFetching) {
+    content = <CircularProgress className={Styles["loading-indicator"]} />;
+  } else if (isSuccess)
     content = posts!.map((post: PostType, index: any) => (
       <Post key={post.post_id} post={post}></Post>
     ));
-  else if (isLoading || isFetching) {
-    content = <CircularProgress className={Styles["loading-indicator"]} />;
-  }
 
+  let handleFollowingClick = () => {
+    history.push(`/profile/${username}/following`);
+  };
+  let handleFollowerClick = () => {
+    history.push(`/profile/${username}/followers`);
+  };
   return (
     <div className={Styles["profile-container"]}>
       <div className={Styles["profile-header-container"]}>
@@ -42,6 +48,22 @@ let Profile = (): JSX.Element => {
         <Avatar className={Styles["profile-avatar"]} />
         <h2>{user?.screen_name}</h2>
         <div>@{user?.username}</div>
+        <div className={Styles["follow-section"]}>
+          <span
+            onClick={handleFollowingClick}
+            className={Styles["follow-label-container"]}
+          >
+            {user?.following_count}{" "}
+            <span className={Styles["follow-label"]}>Following</span>
+          </span>
+          <span
+            onClick={handleFollowerClick}
+            className={Styles["follow-label-container"]}
+          >
+            {user?.follower_count}{" "}
+            <span className={Styles["follow-label"]}>Follower</span>
+          </span>
+        </div>
       </div>
       {content}
     </div>
