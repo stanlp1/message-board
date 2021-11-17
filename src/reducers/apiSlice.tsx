@@ -23,6 +23,7 @@ export type User = {
 export type FUser = {
   username: string;
   screen_name: string;
+  followed: boolean;
 };
 
 export const apiSlice = createApi({

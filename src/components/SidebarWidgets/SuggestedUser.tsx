@@ -43,7 +43,7 @@ const SuggestedUser = ({
       </div>
       <LoadingButton
         disabledClass={Styles["disabled-button"]}
-        disabled={isSuccess}
+        disabled={isSuccess || user.followed === true}
         className={Styles["follow-button"]}
         onClick={handleFollow}
         isLoading={isLoading}
