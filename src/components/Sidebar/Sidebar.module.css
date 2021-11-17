@@ -36,6 +36,22 @@
     margin-bottom: .2em;
 }
 
+.sidebar-hyperlink {
+    display: inline-flex;
+    align-items:center;
+    flex-basis: auto;
+    padding: .5em 1em;
+    cursor: pointer;
+    border-radius: 2em;
+    margin-bottom: .2em;
+    color: black;
+    text-decoration: none;
+}
+
+
+.sidebar-hyperlink:hover {
+    background-color:rgba(0, 0, 0, 0.1)
+}
 
 .sidebar-item:hover {
     background-color:rgba(0, 0, 0, 0.1)

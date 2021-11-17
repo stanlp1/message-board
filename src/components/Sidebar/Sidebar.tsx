@@ -11,6 +11,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import HomeIcon from "@mui/icons-material/Home";
 import ViewColumnOutlinedIcon from "@mui/icons-material/ViewColumnOutlined";
 import ViewColumnIcon from "@mui/icons-material/ViewColumn";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Sidebar = (): JSX.Element => {
   const history = useHistory();
@@ -104,6 +105,15 @@ const Sidebar = (): JSX.Element => {
             )}
             Subscribed Posts
           </div>
+        </div>
+        <div>
+          <a
+            href="https://github.com/stanlp1/message-board/"
+            className={Styles["sidebar-hyperlink"]}
+          >
+            <GitHubIcon className={Styles["sidebar-logo"]} />
+            Github Src
+          </a>
         </div>
         <div className={Styles["sidebar-logout"]}>
           <div onClick={handleLogout} className={`${Styles["sidebar-item"]}`}>
