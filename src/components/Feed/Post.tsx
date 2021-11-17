@@ -38,11 +38,15 @@ const Post = ({ post }: { post: PostType }) => {
   const [likePost] = useLikePostMutation();
   const [unlikePost] = useUnlikePostMutation();
   const [comVis, setComVis] = useState(false);
-  const createdDate = new Date(post.created_at);
+  const createdDate = new Date(
+    new Date(post.created_at).toLocaleString("en-US", {
+      timeZone: "America/Los_Angeles",
+    })
+  );
   const currentDate = new Date();
-  const timeDiff =
-    Math.round(Math.abs(createdDate.getTime() - currentDate.getTime()) / 36e5) -
-    8;
+  const timeDiff = Math.round(
+    Math.abs(createdDate.getTime() - currentDate.getTime()) / 36e5
+  );
   //console.log(createdDate, currentDate, timeDiff);
   const handleLike = (e: any) => {
     e.stopPropagation();
