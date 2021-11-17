@@ -3,6 +3,7 @@
     font-size: 1.5em;
     border: none;
     border-bottom: 2px rgb(239, 243, 244) solid;
+    width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
