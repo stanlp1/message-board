@@ -1,4 +1,4 @@
-import { baseURL, headersList } from "./postServices";
+import { baseURL, headersList } from "./userServices";
 
 let userLogin = async (user, pass) => {
   let url = baseURL + "/account/login";

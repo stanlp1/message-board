@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getComments } from "../../services/postServices";
+import { useGetCommentsQuery } from "../../reducers/apiSlice";
 import Styles from "./Post.module.css";
 import PostComments from "./PostComments";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -31,9 +31,15 @@ const months = [
 
 const Post = ({ post }: { post: PostType }) => {
   const [open, setOpen] = useState(false);
-  const [comments, setComments] = useState<
-    { screen_name: string; username: string; content: string }[]
-  >([]);
+  // const [comments, setComments] = useState<
+  //   { screen_name: string; username: string; content: string }[]
+  // >([]);
+  const {
+    data: comments,
+    isLoading,
+    isSuccess,
+    refetch,
+  } = useGetCommentsQuery(post.post_id);
   const history = useHistory();
   const [likePost] = useLikePostMutation();
   const [unlikePost] = useUnlikePostMutation();
@@ -60,13 +66,13 @@ const Post = ({ post }: { post: PostType }) => {
     unlikePost(post.post_id);
   };
 
-  const refreshComments = async () => {
-    let coms = await getComments(post.post_id);
-    console.log(coms);
-    setComments(coms);
-  };
+  // const refreshComments = async () => {
+  //   let coms = await getComments(post.post_id);
+  //   console.log(coms);
+  //   setComments(coms);
+  // };
   const toggleComments = async () => {
-    if (!comVis) refreshComments();
+    // if (!comVis) refreshComments();
     setComVis(!comVis);
   };
 
@@ -128,7 +134,7 @@ const Post = ({ post }: { post: PostType }) => {
         </div>
         {comVis && (
           <PostComments
-            refreshCom={refreshComments}
+            refreshCom={refetch}
             post_id={post.post_id}
             comments={comments}
           ></PostComments>

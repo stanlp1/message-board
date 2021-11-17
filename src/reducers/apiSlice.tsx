@@ -32,8 +32,12 @@ export const apiSlice = createApi({
     baseUrl: "https://safe-wave-92099.herokuapp.com/",
     credentials: "include",
   }),
-  tagTypes: ["Post"],
+  tagTypes: ["Post", "Comment"],
   endpoints: (builder) => ({
+    getComments: builder.query<any, string | number>({
+      query: (post_id) => `posts/${post_id}/comments`,
+      providesTags: (result, error, arg) => [{ type: "Comment", id: arg }],
+    }),
     getFollower: builder.query<FUser[], string>({
       query: (username) => `user/${username}/follower`,
     }),
@@ -56,6 +60,16 @@ export const apiSlice = createApi({
     getSubPosts: builder.query<PostType[], void>({
       query: () => "posts/getSubscribedPosts",
       providesTags: ["Post"],
+    }),
+    createComment: builder.mutation({
+      query: (body) => ({
+        url: "/posts/createComment",
+        method: "POST",
+        body: body,
+      }),
+      invalidatesTags: (result, error, arg) => [
+        { type: "Comment", id: arg.post_id },
+      ],
     }),
     follow: builder.mutation({
       query: (body) => ({
@@ -175,4 +189,6 @@ export const {
   useFollowMutation,
   useGetFollowerQuery,
   useGetFollowingQuery,
+  useGetCommentsQuery,
+  useCreateCommentMutation,
 } = apiSlice;

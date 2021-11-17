@@ -1,28 +1,29 @@
 import { useState } from "react";
-import { createComment } from "../../services/postServices";
 import Styles from "./PostComments.module.css";
 import postStyles from "./Post.module.css";
 import { useHistory } from "react-router";
+import { useCreateCommentMutation } from "../../reducers/apiSlice";
 const PostComments = ({
   comments,
   post_id,
   refreshCom,
 }: {
-  refreshCom: () => Promise<void>;
+  refreshCom: () => void;
   post_id: number;
   comments: { screen_name: string; username: string; content: string }[];
 }): JSX.Element => {
+  const [createComment, { isLoading }] = useCreateCommentMutation();
   const history = useHistory();
   const [postContent, setPostContent] = useState("");
   const handleNewComment = async () => {
-    createComment(post_id, postContent);
+    createComment({ post_id, content: postContent });
   };
 
   const handleKeyPress = async (e: any) => {
     if (e.which === 13) {
       e.preventDefault();
-      await handleNewComment();
-      refreshCom();
+      handleNewComment();
+      //refreshCom();
     }
   };
   return (

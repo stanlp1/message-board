@@ -1,5 +1,7 @@
-import { baseURL, headersList } from "./postServices";
-
+export const baseURL = "https://safe-wave-92099.herokuapp.com";
+export let headersList = {
+  "Content-Type": "application/json",
+};
 const getSuggestedUsers = async () => {
   const url = baseURL + "/user/suggestedUsers";
   let res = await fetch(url, {

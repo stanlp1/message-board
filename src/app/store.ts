@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import authSlice from "../reducers/authSlice";
-import feedSlice from "../reducers/feedSlice";
+
 import { persistReducer } from "redux-persist";
 import { apiSlice } from "../reducers/apiSlice";
 import storage from "redux-persist/lib/storage";
@@ -14,7 +14,6 @@ const persistConfig = {
 
 const reducers = combineReducers({
   auth: authSlice,
-  feed: feedSlice,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, reducers);
