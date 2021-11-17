@@ -5,16 +5,16 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    border-right: 2px rgb(239, 243, 244) solid;
     display:flex;
     flex-direction: column;
-    padding-right: 1em;
+
 }
 
 .sidebar-outer-container {
     display:flex;
     justify-content: flex-end;
     flex: 0.3;
+    padding-right: 2em;
 }
 .sidebar-logo-container {
     padding: .5em 1em;
@@ -23,7 +23,6 @@
 }
 
 .sidebar-logo {
-    margin-right: 1rem;
     font-size: 2em !important;
 }
 .sidebar-item {
@@ -59,4 +58,18 @@
 
 .sidebar-logout {
     margin-top:auto;
+}
+.sidebar-item-text {
+    margin-left: .5em;
+}
+
+@media screen and (max-width: 900px) {
+    .sidebar-item-text {
+      display:none;
+    }
+    .sidebar-outer-container {
+        flex: 0.1;
+        padding-right: 0;
+    }
+
 }

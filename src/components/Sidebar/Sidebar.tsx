@@ -12,13 +12,15 @@ import HomeIcon from "@mui/icons-material/Home";
 import ViewColumnOutlinedIcon from "@mui/icons-material/ViewColumnOutlined";
 import ViewColumnIcon from "@mui/icons-material/ViewColumn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Sidebar = (): JSX.Element => {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
   const handleNavClick = async (e: any) => {
-    let option = e.target.id;
+    let option = e.currentTarget.id;
+    console.log("nav clicked", option);
     // if (option === "/all") {
     //   dispatch(updateAllPosts());
     // } else if (option === "/subscribed") {
@@ -75,7 +77,7 @@ const Sidebar = (): JSX.Element => {
             ) : (
               <PersonOutlinedIcon className={Styles["sidebar-logo"]} />
             )}
-            Profile
+            <span className={Styles["sidebar-item-text"]}>Profile</span>
           </div>
         </div>
         <div>
@@ -89,7 +91,7 @@ const Sidebar = (): JSX.Element => {
             ) : (
               <HomeOutlinedIcon className={Styles["sidebar-logo"]} />
             )}
-            All Posts
+            <span className={Styles["sidebar-item-text"]}>All Posts</span>
           </div>
         </div>
         <div>
@@ -103,7 +105,9 @@ const Sidebar = (): JSX.Element => {
             ) : (
               <ViewColumnOutlinedIcon className={Styles["sidebar-logo"]} />
             )}
-            Subscribed Posts
+            <span className={Styles["sidebar-item-text"]}>
+              Subscribed Posts
+            </span>
           </div>
         </div>
         <div>
@@ -112,12 +116,13 @@ const Sidebar = (): JSX.Element => {
             className={Styles["sidebar-hyperlink"]}
           >
             <GitHubIcon className={Styles["sidebar-logo"]} />
-            Github Src
+            <span className={Styles["sidebar-item-text"]}>Github src</span>
           </a>
         </div>
         <div className={Styles["sidebar-logout"]}>
           <div onClick={handleLogout} className={`${Styles["sidebar-item"]}`}>
-            Logout
+            <LogoutIcon className={Styles["sidebar-logo"]} />
+            <span className={Styles["sidebar-item-text"]}>Logout</span>
           </div>
         </div>
       </div>

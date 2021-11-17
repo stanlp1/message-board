@@ -2,6 +2,8 @@
     flex: 0.3;
     display:flex;
     flex-direction: column;
+    border-left: 2px rgb(239, 243, 244) solid;
+    border-right: 2px rgb(239, 243, 244) solid;
 }
 
 .feed-header {
@@ -16,4 +18,11 @@
 
 .loading-indicator {
     margin: 2em auto 0 auto;
+}
+
+@media screen and (max-width: 900px) {
+
+    .feed-container {
+        flex: 0.9;
+    }
 }
