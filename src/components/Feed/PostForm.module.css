@@ -3,6 +3,7 @@
     font-size: 1.5em;
     border: none;
     border-bottom: 2px rgb(239, 243, 244) solid;
+    width: 100%;
 }
 .post-text-area:focus{
     outline: none;
