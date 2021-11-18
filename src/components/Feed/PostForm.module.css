@@ -56,3 +56,7 @@
     position: static !important;
     height: 2.9em;
 }
+
+.post-form-button-disabled {
+    opacity: 0.5;
+}

@@ -67,6 +67,33 @@ export const apiSlice = createApi({
         method: "POST",
         body: body,
       }),
+      async onQueryStarted(body, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(
+            apiSlice.util.updateQueryData("getAllPosts", undefined, (posts) => {
+              console.log("patching");
+              posts.forEach((post) => {
+                if (post.post_id === body.post_id) {
+                  post.comment_count++;
+                }
+              });
+            })
+          );
+          dispatch(
+            apiSlice.util.updateQueryData("getSubPosts", undefined, (posts) => {
+              console.log("patching");
+              posts.forEach((post) => {
+                if (post.post_id === body.post_id) {
+                  post.comment_count++;
+                }
+              });
+            })
+          );
+        } catch (e) {
+          console.log(e);
+        }
+      },
       invalidatesTags: (result, error, arg) => [
         { type: "Comment", id: arg.post_id },
       ],

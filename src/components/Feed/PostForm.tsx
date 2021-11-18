@@ -65,6 +65,8 @@ const PostForm = (): JSX.Element => {
             placeholder="Image URL(optional)"
           ></input>
           <LoadingButton
+            disabled={post === ""}
+            disabledClass={Styles["post-form-button-disabled"]}
             className={Styles["post-form-button"]}
             onClick={handleNewPost}
             variant="contained"
