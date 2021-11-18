@@ -1,5 +1,5 @@
 .widget-container {
-    border: 2px rgb(239, 243, 244) solid;
+    border: 1px rgb(239, 243, 244) solid;
     margin: 1em;
     max-width: 20vw;
     min-width: fit-content;
@@ -31,6 +31,7 @@
 }
 
 .inner-container {
+    cursor: pointer;
     display:flex;
     flex-direction: row;
 }

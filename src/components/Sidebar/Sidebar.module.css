@@ -63,7 +63,7 @@
     margin-left: .5em;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1200px) {
     .sidebar-item-text {
       display:none;
     }

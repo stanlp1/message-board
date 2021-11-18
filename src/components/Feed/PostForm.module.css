@@ -2,7 +2,7 @@
     resize: none;
     font-size: 1.5em;
     border: none;
-    border-bottom: 2px rgb(239, 243, 244) solid;
+    border-bottom: 1px rgb(239, 243, 244) solid;
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -21,7 +21,7 @@
 .post-form-outer-container {
     display: flex;
     flex-direction: row;
-    border-bottom: 2px rgb(239, 243, 244) solid;
+    border-bottom: 1px rgb(239, 243, 244) solid;
 }
 
 .post-form-avatar {

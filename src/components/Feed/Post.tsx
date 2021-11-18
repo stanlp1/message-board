@@ -111,22 +111,31 @@ const Post = ({ post }: { post: PostType }) => {
             ></img>
           )}
           <div className={Styles["post-footer"]}>
-            <div className={Styles["comment-ind-container"]}>
-              <CommentIcon></CommentIcon>
+            <div
+              className={`${Styles["comment-ind-container"]} ${Styles["action-item-container"]} `}
+            >
+              <CommentIcon className={Styles["action-icon"]}></CommentIcon>
               <span>{post.comment_count}</span>
             </div>
 
             <div
-              className={
-                post.liked
-                  ? Styles["material-icon-heart"]
-                  : Styles["material-icon-border-heart"]
-              }
+              className={`
+                ${
+                  post.liked
+                    ? Styles["material-icon-heart"]
+                    : Styles["material-icon-border-heart"]
+                } ${Styles["action-item-container"]}`}
             >
               {post.liked ? (
-                <FavoriteIcon onClick={handleDislike} />
+                <FavoriteIcon
+                  className={Styles["action-icon"]}
+                  onClick={handleDislike}
+                />
               ) : (
-                <FavoriteBorderIcon onClick={handleLike} />
+                <FavoriteBorderIcon
+                  className={Styles["action-icon"]}
+                  onClick={handleLike}
+                />
               )}
               <span>{post.like_count}</span>
             </div>
